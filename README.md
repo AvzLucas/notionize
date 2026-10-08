@@ -1,2 +1,4 @@
-# notionize
-An obsidian plugin for notion lovers
+# Notionize
+
+An Obsidian plugin for Notion lovers.
+
