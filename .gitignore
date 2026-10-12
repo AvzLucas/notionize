@@ -1,5 +1,6 @@
 node_modules/
+.env
 main.js
 *.map
 *.tsbuildinfo
-AGENTS.md
+project-spec.md

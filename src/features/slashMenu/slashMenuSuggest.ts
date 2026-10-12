@@ -2,7 +2,7 @@ import {
   App, Editor, EditorPosition, EditorSuggest, EditorSuggestContext,
   EditorSuggestTriggerInfo, TFile
 } from "obsidian";
-import { SlashMenuOption, slashMenuOptions } from "./slash-menu-options";
+import { SlashMenuOption, slashMenuOptions, getInsertion } from "./slashMenuOptions";
 
 export class SlashMenuSuggest extends EditorSuggest<SlashMenuOption> {
   constructor(app: App) {
@@ -52,16 +52,19 @@ export class SlashMenuSuggest extends EditorSuggest<SlashMenuOption> {
   private createInsertion(option: SlashMenuOption, indentation: string): { text: string; cursor: EditorPosition } {
     const start = this.context?.start;
     if (!start) throw new Error("A slash-menu suggestion requires an active editor context.");
-
-    if (option.insert === "task") {
-      return { text: "- [ ] ", cursor: { line: start.line, ch: start.ch + 6 } };
-    }
-    if (option.insert === "callout") {
-      return { text: "> [!info] ", cursor: { line: start.line, ch: start.ch + 10 } };
-    }
-    return {
-      text: `\`\`\`\n${indentation}\n${indentation}\`\`\``,
-      cursor: { line: start.line + 1, ch: indentation.length }
-    };
+    return getInsertion(start.line, start.ch, option.insert, indentation)
+    // if (option.insert === "task") {
+    //   return { text: "- [ ] ", cursor: { line: start.line, ch: start.ch + 6 } };
+    // }
+    // if (option.insert === "callout") {
+    //   return { text: "> [!info] ", cursor: { line: start.line, ch: start.ch + 10 } };
+    // }
+    // if(option.insert == "quote"){
+    //   return { text: "> **", cursor: { line: start.line, ch:start.ch + 3 } };
+    // }
+    // return {
+    //   text: `\`\`\`\n${indentation}\n${indentation}\`\`\``,
+    //   cursor: { line: start.line + 1, ch: indentation.length }
+    // };
   }
 }
