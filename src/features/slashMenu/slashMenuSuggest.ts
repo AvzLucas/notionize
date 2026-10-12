@@ -53,18 +53,5 @@ export class SlashMenuSuggest extends EditorSuggest<SlashMenuOption> {
     const start = this.context?.start;
     if (!start) throw new Error("A slash-menu suggestion requires an active editor context.");
     return getInsertion(start.line, start.ch, option.insert, indentation)
-    // if (option.insert === "task") {
-    //   return { text: "- [ ] ", cursor: { line: start.line, ch: start.ch + 6 } };
-    // }
-    // if (option.insert === "callout") {
-    //   return { text: "> [!info] ", cursor: { line: start.line, ch: start.ch + 10 } };
-    // }
-    // if(option.insert == "quote"){
-    //   return { text: "> **", cursor: { line: start.line, ch:start.ch + 3 } };
-    // }
-    // return {
-    //   text: `\`\`\`\n${indentation}\n${indentation}\`\`\``,
-    //   cursor: { line: start.line + 1, ch: indentation.length }
-    // };
   }
 }
