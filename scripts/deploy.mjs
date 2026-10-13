@@ -1,4 +1,4 @@
-import { copyFile } from "node:fs/promises";
+import { copyFile, mkdir } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadEnvironment, requireEnvironmentValue } from "./envInterface.mjs";
@@ -9,6 +9,8 @@ const environment = await loadEnvironment(join(projectDirectory, ".env"));
 const pluginDirectory = requireEnvironmentValue(environment, "OBSIDIAN_PLUGIN_DIR");
 const filesToDeploy = ["main.js", "manifest.json", "styles.css"];
 
+await mkdir(pluginDirectory, { recursive: true });
+
 for (const fileName of filesToDeploy) {
   await copyFile(
     join(projectDirectory, fileName),
@@ -16,4 +18,4 @@ for (const fileName of filesToDeploy) {
   );
 }
 
-console.log(`Deployed Notionize to ${pluginDirectory}`);
+console.log(`Deployed Notionize to ${pluginDirectory}`)

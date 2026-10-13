@@ -13,7 +13,7 @@ export class SlashMenuSuggest extends EditorSuggest<SlashMenuOption> {
     const line = editor.getLine(cursor.line);
     const textBeforeCursor = line.slice(0, cursor.ch);
     const textAfterCursor = line.slice(cursor.ch);
-    const match = textBeforeCursor.match(/^(\s*)\/([a-z-]*)$/i);
+    const match = textBeforeCursor.match(/^(\s*)\/([a-z0-9-]*)$/i);
 
     if (!match || textAfterCursor.trim() !== "") return null;
 
