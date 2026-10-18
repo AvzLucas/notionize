@@ -1,15 +1,10 @@
-type Component = "task"| "callout" | "code" | "H1"| "H2" | "H3" | "quote"
+import type { SlashComponent } from "../../components/componentTypes";
 
 export interface SlashMenuOption {
   title: string;
   description: string;
   aliases: string[];
-  insert: Component;
-}
-
-interface Insertion {
-  text: string,
-  cursor: { line: number, ch: number},
+  insert: SlashComponent;
 }
 
 export const slashMenuOptions: SlashMenuOption[] = [
@@ -21,20 +16,3 @@ export const slashMenuOptions: SlashMenuOption[] = [
   { title: "Heading 2", description: "Add a mid heading", aliases: ["heading-2", "heading", "header", "h2", "title"], insert: "H2" },
   { title: "Heading 3", description: "Add a small heading", aliases: ["heading-3", "heading", "header", "h3", "title"], insert: "H3" },
 ];
-
-export const getInsertion = (line: number, ch: number, component: Component, indentation: string): Insertion => {
-  const insertions = {
-    task: { text: "- [ ] ", cursor: { line, ch: ch + 6 } },
-    callout: { text: "> [!info] ", cursor: { line, ch: ch + 10 } },
-    code: {
-      text: `\`\`\`\n${indentation}\n${indentation}\`\`\``,
-      cursor: { line: line + 1, ch: indentation.length },
-    },
-    quote: { text: "> **", cursor: { line, ch: ch + 3 } },
-    H1: { text: "# ", cursor: { line, ch: ch + 2 } },
-    H2: { text: "## ", cursor: { line, ch: ch + 3 } },
-    H3: { text: "### ", cursor: { line, ch: ch + 4 } },
-  };
-          
-  return insertions[component]
-}

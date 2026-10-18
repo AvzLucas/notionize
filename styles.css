@@ -10,3 +10,73 @@
   color: var(--text-muted);
   font-size: 0.85em;
 }
+
+.notionize-component__checkbox-container {
+  display: inline-block;
+  padding: 0 0.45rem 0 0.1rem;
+  vertical-align: middle;
+}
+
+.notionize-component__checkbox {
+  accent-color: var(--interactive-accent);
+  cursor: pointer;
+  margin: 0;
+}
+
+.notionize-component__icon {
+  color: var(--text-muted);
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: 700;
+  min-width: 1.5rem;
+  padding-right: 0.45rem;
+  text-align: center;
+}
+
+.cm-line.notionize-component-line--quote {
+  border-left: 3px solid var(--interactive-accent);
+}
+
+.cm-line.notionize-component-line--callout {
+  background: color-mix(in srgb, var(--color-blue) 10%, var(--background-primary)) !important;
+  border-left: 0 !important;
+  box-sizing: border-box;
+}
+
+.cm-line.notionize-component-line--callout.notionize-component-line--first {
+  border-radius: var(--radius-m) var(--radius-m) 0 0;
+  padding-top: 0.75rem;
+}
+
+.cm-line.notionize-component-line--callout.notionize-component-line--last {
+  border-radius: 0 0 var(--radius-m) var(--radius-m);
+  padding-bottom: 0.75rem;
+}
+
+.notionize-callout__header {
+  align-items: center;
+  color: var(--color-blue);
+  display: inline-flex;
+  font-weight: 600;
+  gap: 0.45rem;
+  padding-left: 2.75rem;
+}
+
+.notionize-callout__icon {
+  font-size: 1.1em;
+}
+
+.notionize-callout__content-indent {
+  display: inline-block;
+  pointer-events: none;
+  width: 2.25rem;
+}
+
+.notionize-component--quote {
+  font-style: italic;
+}
+
+.cm-line.notionize-component-line--code {
+  background: var(--code-background);
+  font-family: var(--font-monospace);
+}

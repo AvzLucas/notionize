@@ -2,7 +2,8 @@ import {
   App, Editor, EditorPosition, EditorSuggest, EditorSuggestContext,
   EditorSuggestTriggerInfo, TFile
 } from "obsidian";
-import { SlashMenuOption, slashMenuOptions, getInsertion } from "./slashMenuOptions";
+import { getInsertion } from "../../components/componentInsertion";
+import { SlashMenuOption, slashMenuOptions } from "./slashMenuOptions";
 
 export class SlashMenuSuggest extends EditorSuggest<SlashMenuOption> {
   constructor(app: App) {
