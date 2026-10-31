@@ -1,40 +1,26 @@
-type Component = "task"| "callout" | "code" | "H1"| "H2" | "H3" | "quote"
+import type { IconName } from "obsidian";
+import type { InsertKind } from "../../core/ops/templates";
 
 export interface SlashMenuOption {
   title: string;
   description: string;
   aliases: string[];
-  insert: Component;
-}
-
-interface Insertion {
-  text: string,
-  cursor: { line: number, ch: number},
+  kind: InsertKind;
+  icon: IconName;
 }
 
 export const slashMenuOptions: SlashMenuOption[] = [
-  { title: "To-do list", description: "Track a task", aliases: ["todo", "task", "checkbox"], insert: "task" },
-  { title: "Callout", description: "Add an callout", aliases: ["callout", "info"], insert: "callout" },
-  { title: "Code", description: "Add a code block", aliases: ["code", "codeblock"], insert: "code" },
-  { title: "Quote", description: "Add a quote", aliases: ["quote"], insert: "quote" },
-  { title: "Heading 1", description: "Add a big heading", aliases: ["heading-1", "heading", "header", "h1", "title"], insert: "H1" },
-  { title: "Heading 2", description: "Add a mid heading", aliases: ["heading-2", "heading", "header", "h2", "title"], insert: "H2" },
-  { title: "Heading 3", description: "Add a small heading", aliases: ["heading-3", "heading", "header", "h3", "title"], insert: "H3" },
+  { title: "To-do list", description: "Track a task", aliases: ["todo", "task", "checkbox"], kind: "task", icon: "check-square" },
+  { title: "Heading 1", description: "Big section heading", aliases: ["h1", "heading", "title"], kind: "h1", icon: "heading-1" },
+  { title: "Heading 2", description: "Medium section heading", aliases: ["h2", "heading", "subtitle"], kind: "h2", icon: "heading-2" },
+  { title: "Heading 3", description: "Small section heading", aliases: ["h3", "heading"], kind: "h3", icon: "heading-3" },
+  { title: "Bulleted list", description: "A simple bulleted list", aliases: ["bullet", "list", "ul"], kind: "bullet", icon: "list" },
+  { title: "Numbered list", description: "A list with numbers", aliases: ["numbered", "list", "ol"], kind: "numbered", icon: "list-ordered" },
+  { title: "Toggle list", description: "Hide content inside", aliases: ["toggle", "fold", "collapse", "dropdown"], kind: "toggle", icon: "chevron-right" },
+  { title: "Quote", description: "Capture a quote", aliases: ["quote", "blockquote"], kind: "quote", icon: "quote" },
+  { title: "Callout", description: "Make text stand out", aliases: ["callout", "info", "note"], kind: "callout", icon: "info" },
+  { title: "Code", description: "A code block", aliases: ["code", "codeblock", "snippet"], kind: "code", icon: "code" },
+  { title: "Divider", description: "Separate sections", aliases: ["divider", "hr", "line", "separator"], kind: "divider", icon: "minus" },
+  { title: "Table view", description: "Your notes as a table", aliases: ["table", "database", "view"], kind: "table-view", icon: "table" },
+  { title: "Card view", description: "Your notes as cards", aliases: ["cards", "gallery", "board", "view"], kind: "card-view", icon: "layout-grid" },
 ];
-
-export const getInsertion = (line: number, ch: number, component: Component, indentation: string): Insertion => {
-  const insertions = {
-    task: { text: "- [ ] ", cursor: { line, ch: ch + 6 } },
-    callout: { text: "> [!info] ", cursor: { line, ch: ch + 10 } },
-    code: {
-      text: `\`\`\`\n${indentation}\n${indentation}\`\`\``,
-      cursor: { line: line + 1, ch: indentation.length },
-    },
-    quote: { text: "> **", cursor: { line, ch: ch + 3 } },
-    H1: { text: "# ", cursor: { line, ch: ch + 2 } },
-    H2: { text: "## ", cursor: { line, ch: ch + 3 } },
-    H3: { text: "### ", cursor: { line, ch: ch + 4 } },
-  };
-          
-  return insertions[component]
-}

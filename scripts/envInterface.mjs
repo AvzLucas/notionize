@@ -1,9 +1,5 @@
 import { readFile } from "node:fs/promises";
 
-/**
- * Loads the small, local environment interface used by development scripts.
- * The real values stay in .env, which Git ignores.
- */
 export async function loadEnvironment(environmentPath) {
   const content = await readFile(environmentPath, "utf8");
   const environment = {};

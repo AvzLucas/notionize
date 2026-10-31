@@ -6,14 +6,22 @@
   "type": "module",
   "scripts": {
     "dev": "node esbuild.config.mjs",
-    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && node scripts/deploy.mjs"
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "deploy": "npm run build && node scripts/deploy.mjs",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
-  "keywords": ["obsidian", "obsidian-plugin", "notion"],
-  "license": "UNLICENSED",
+  "keywords": [
+    "obsidian",
+    "obsidian-plugin",
+    "notion"
+  ],
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.15.17",
-    "esbuild": "0.25.5",
-    "obsidian": "latest",
-    "typescript": "^5.8.3"
+    "esbuild": "^0.28.2",
+    "obsidian": "1.13.1",
+    "typescript": "^5.8.3",
+    "vitest": "^5.0.5"
   }
 }
