@@ -1,7 +1,7 @@
 {
   "id": "notionize",
   "name": "Notionize",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "minAppVersion": "1.9.0",
   "description": "Write like in Notion: a slash menu, drag handles to move blocks, and Markdown that stays out of sight while your notes remain plain Markdown.",
   "author": "Lucas Avozani",
