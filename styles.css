@@ -1,12 +1,221 @@
 .notionize-slash-menu__option {
-  display: grid;
-  gap: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   padding: 0.4rem 0.55rem;
 }
 
-.notionize-slash-menu__title { font-weight: 600; }
+.notionize-slash-menu__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background: var(--background-primary);
+  color: var(--text-muted);
+}
+
+.notionize-slash-menu__body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.notionize-slash-menu__title {
+  font-weight: 600;
+}
 
 .notionize-slash-menu__description {
   color: var(--text-muted);
   font-size: 0.85em;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-toggle-line .cm-fold-indicator {
+  display: none;
+}
+
+.nz-handle {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  border-radius: var(--radius-s);
+  color: var(--text-faint);
+  cursor: grab;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  touch-action: none;
+}
+
+.nz-handle.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nz-handle:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+}
+
+.nz-handle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.nz-drop-indicator {
+  position: absolute;
+  z-index: 5;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--interactive-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nz-drop-indicator.is-visible {
+  opacity: 0.8;
+}
+
+body.nz-dragging,
+body.nz-dragging * {
+  cursor: grabbing !important;
+}
+
+.nz-callout-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-inline-end: 0.35em;
+  color: var(--callout-color);
+  font-weight: var(--callout-title-weight, 600);
+  vertical-align: top;
+}
+
+.nz-callout-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nz-callout-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nz-code-label {
+  display: inline-block;
+  padding: 0 0.45em;
+  border-radius: var(--radius-s);
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+  font-size: 0.8em;
+}
+
+.nz-transparent {
+  color: transparent;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-callout-line {
+  background-color: color-mix(in srgb, var(--callout-color) 10%, transparent) !important;
+  padding-inline-start: 24px !important;
+  padding-inline-end: 12px !important;
+  text-indent: 0 !important;
+  border-left: none !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-callout-line::before {
+  display: none !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-callout-first {
+  padding-top: 12px !important;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: var(--callout-color);
+  font-weight: var(--callout-title-weight, 600);
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-callout-last {
+  padding-bottom: 12px !important;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.nz-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25em;
+  height: 1.25em;
+  margin-inline-end: 0.3em;
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  cursor: pointer;
+  vertical-align: middle;
+  text-indent: 0;
+}
+
+.nz-toggle::before {
+  content: "";
+  border-style: solid;
+  border-width: 0.3em 0 0.3em 0.48em;
+  border-color: transparent transparent transparent currentColor;
+  transition: transform 120ms ease;
+}
+
+.nz-toggle.is-open::before {
+  transform: rotate(90deg);
+}
+
+.nz-toggle:hover {
+  background: var(--background-modifier-hover);
+}
+
+.nz-toggle-empty {
+  padding-inline-start: calc(var(--nz-indent, 0) * 1ch + 1.6em);
+  padding-block: 2px;
+  color: var(--text-faint);
+  cursor: text;
+}
+
+.nz-drag-ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--layer-dragged-item, 1000);
+  box-sizing: content-box;
+  padding: 0 !important;
+  border-radius: var(--radius-s);
+  background: var(--background-primary);
+  box-shadow: var(--shadow-s);
+  opacity: 0.6;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nz-drag-ghost .cm-line {
+  pointer-events: none;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-drag-source {
+  opacity: 0.35;
+}
+
+@keyframes nz-landed {
+  from {
+    background-color: rgba(var(--interactive-accent-rgb, 120, 82, 238), 0.22);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.markdown-source-view.mod-cm6 .cm-line.nz-landed {
+  animation: nz-landed 0.9s ease-out;
 }
