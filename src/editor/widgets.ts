@@ -15,9 +15,9 @@ export class CheckboxWidget extends WidgetType {
   }
 
   toDOM(view: EditorView): HTMLElement {
-    const wrap = document.createElement("label");
+    const wrap = createEl("label");
     wrap.className = "task-list-label nz-checkbox";
-    const input = document.createElement("input");
+    const input = createEl("input");
     input.type = "checkbox";
     input.className = "task-list-item-checkbox";
     input.dataset.task = this.checked ? "x" : " ";
@@ -54,7 +54,7 @@ export class CalloutLabelWidget extends WidgetType {
   }
 
   toDOM(): HTMLElement {
-    const label = document.createElement("span");
+    const label = createSpan();
     label.className = "nz-callout-label";
     const icon = label.createSpan({ cls: "nz-callout-icon" });
     setIcon(icon, calloutIcon(this.calloutType));
@@ -75,7 +75,7 @@ export class CodeLabelWidget extends WidgetType {
   }
 
   toDOM(): HTMLElement {
-    const label = document.createElement("span");
+    const label = createSpan();
     label.className = "nz-code-label";
     label.textContent = this.language || "code";
     return label;

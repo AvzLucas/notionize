@@ -32,7 +32,7 @@ class TriangleWidget extends WidgetType {
   }
 
   toDOM(view: EditorView): HTMLElement {
-    const button = document.createElement("span");
+    const button = createSpan();
     button.className = "nz-toggle" + (this.open ? " is-open" : "");
     button.setAttribute("role", "button");
     button.setAttribute("aria-label", this.open ? "Close toggle" : "Open toggle");
@@ -69,7 +69,7 @@ class PlaceholderWidget extends WidgetType {
   }
 
   toDOM(view: EditorView): HTMLElement {
-    const placeholder = document.createElement("div");
+    const placeholder = createDiv();
     placeholder.className = "nz-toggle-empty";
     placeholder.style.setProperty("--nz-indent", String(this.indent));
     placeholder.textContent = "Empty toggle. Click or drop blocks inside.";

@@ -36,7 +36,11 @@ export class FolderSuggestModal extends SuggestModal<FolderChoice> {
     else el.setText(choice.create ? `Create folder "${choice.path}"` : choice.path);
   }
 
-  async onChooseSuggestion(choice: FolderChoice): Promise<void> {
+  onChooseSuggestion(choice: FolderChoice): void {
+    void this.choose(choice);
+  }
+
+  private async choose(choice: FolderChoice): Promise<void> {
     if (choice.create && choice.path !== null) {
       try {
         await this.app.vault.createFolder(choice.path);

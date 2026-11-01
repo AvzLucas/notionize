@@ -190,6 +190,7 @@ body.nz-dragging * {
   left: 0;
   z-index: var(--layer-dragged-item, 1000);
   box-sizing: content-box;
+  min-height: 0 !important;
   padding: 0 !important;
   border-radius: var(--radius-s);
   background: var(--background-primary);

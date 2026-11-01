@@ -39,13 +39,13 @@ export function dragHandles(options: DragOptions) {
       private drag: DragState | null = null;
 
       constructor(private readonly view: EditorView) {
-        this.handle = document.createElement("div");
+        this.handle = createDiv();
         this.handle.className = "nz-handle";
         this.handle.setAttribute("aria-label", "Drag to move, click for options");
         this.handle.draggable = false;
         setIcon(this.handle, "grip-vertical");
 
-        this.indicator = document.createElement("div");
+        this.indicator = createDiv();
         this.indicator.className = "nz-drop-indicator";
 
         view.dom.append(this.handle, this.indicator);
@@ -204,12 +204,11 @@ export function dragHandles(options: DragOptions) {
         const shown = lines.slice(0, GHOST_LINES);
         const first = shown[0]!.getBoundingClientRect();
         const last = shown[shown.length - 1]!.getBoundingClientRect();
-        const ghost = document.createElement("div");
+        const ghost = createDiv();
         ghost.className = "nz-drag-ghost markdown-source-view mod-cm6";
         const height = `${last.bottom - first.top}px`;
         ghost.style.setProperty("width", `${first.width}px`, "important");
         ghost.style.setProperty("height", height, "important");
-        ghost.style.setProperty("min-height", "0", "important");
         ghost.style.setProperty("max-height", height, "important");
         for (const line of shown) ghost.append(line.cloneNode(true));
         document.body.append(ghost);
