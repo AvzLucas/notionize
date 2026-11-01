@@ -4,3 +4,4 @@ main.js
 *.map
 *.tsbuildinfo
 project-spec.md
+assets/.DS_Store
